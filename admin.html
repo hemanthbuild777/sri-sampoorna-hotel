@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Sri Sampoorna</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="loginPage" class="login-page">
+    <div class="login-box">
+      <h2>🔐 Admin Login</h2>
+      <p>Sri Sampoorna Hotel</p>
+      <input type="text" placeholder="Username" id="adminUser">
+      <input type="password" placeholder="Password" id="adminPass">
+      <button onclick="adminLogin()">Login</button>
+      <p id="loginError" style="color:red;margin-top:10px;"></p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="adminDashboard" style="display:none">
+    <div class="admin-layout">
+
+      <div class="admin-sidebar">
+        <div class="admin-logo">Sri Sampoorna<br><small>Admin Panel</small></div>
+        <ul>
+          <li onclick="showTab('overview')" class="active" id="tab-overview">📊 Dashboard</li>
+          <li onclick="showTab('menu')" id="tab-menu">🍽️ Menu Manager</li>
+          <li onclick="showTab('special')" id="tab-special">⭐ Today's Special</li>
+          <li onclick="showTab('feedback')" id="tab-feedback">💬 Feedback</li>
+          <li onclick="adminLogout()" style="margin-top:auto;color:#ff6b6b;">🚪 Logout</li>
+        </ul>
+      </div>
+
+      <div class="admin-content">
+
+        <!-- OVERVIEW -->
+        <div id="overview" class="admin-tab">
+          <h2>Dashboard Overview</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3 id="totalMenuItems">0</h3>
+              <p>Menu Items</p>
+            </div>
+            <div class="stat-card">
+              <h3 id="totalFeedback">0</h3>
+              <p>Total Feedback</p>
+            </div>
+            <div class="stat-card">
+              <h3>3.9 ⭐</h3>
+              <p>Avg Rating</p>
+            </div>
+            <div class="stat-card">
+              <h3>24/7</h3>
+              <p>Service Hours</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MENU MANAGER -->
+        <div id="menu" class="admin-tab" style="display:none">
+          <h2>🍽️ Menu Manager</h2>
+          <div class="add-item-form">
+            <h3>Add New Item</h3>
+            <div class="add-item-grid">
+              <input type="text" placeholder="Dish Name" id="newItemName">
+              <input type="number" placeholder="Price (₹)" id="newItemPrice">
+              <select id="newItemCategory">
+                <option value="breakfast">🍳 Breakfast</option>
+                <option value="biryani">🍚 Biryani</option>
+                <option value="chinese">🍜 Chinese</option>
+                <option value="starters">🍗 Starters</option>
+                <option value="curry">🍛 Curry</option>
+                <option value="beverages">🥤 Beverages</option>
+                <option value="desserts">🍦 Desserts</option>
+                <option value="other">🍽️ Other</option>
+              </select>
+              <select id="newItemVeg">
+                <option value="true">🟢 Vegetarian</option>
+                <option value="false">🔴 Non-Vegetarian</option>
+              </select>
+              <input type="text" placeholder="Image URL (optional)" id="newItemImg">
+              <button onclick="addNewItem()">➕ Add Item</button>
+            </div>
+            <p id="addItemMsg" class="success-msg"></p>
+          </div>
+
+          <div class="current-menu">
+            <h3>Current Menu Items</h3>
+            <div class="menu-filter-admin">
+              <button class="filter-btn active" onclick="filterAdminMenu('all', this)">All</button>
+              <button class="filter-btn" onclick="filterAdminMenu('breakfast', this)">Breakfast</button>
+              <button class="filter-btn" onclick="filterAdminMenu('biryani', this)">Biryani</button>
+              <button class="filter-btn" onclick="filterAdminMenu('chinese', this)">Chinese</button>
+              <button class="filter-btn" onclick="filterAdminMenu('starters', this)">Starters</button>
+              <button class="filter-btn" onclick="filterAdminMenu('curry', this)">Curry</button>
+              <button class="filter-btn" onclick="filterAdminMenu('beverages', this)">Beverages</button>
+              <button class="filter-btn" onclick="filterAdminMenu('desserts', this)">Desserts</button>
+            </div>
+            <div id="adminMenuList"></div>
+          </div>
+        </div>
+
+        <!-- TODAY'S SPECIAL -->
+        <div id="special" class="admin-tab" style="display:none">
+          <h2>⭐ Today's Special</h2>
+          <div class="special-form">
+            <input type="text" placeholder="Dish Name" id="specialName">
+            <input type="number" placeholder="Offer Price (₹)" id="specialOffer">
+            <input type="number" placeholder="Original Price (₹)" id="specialOriginal">
+            <input type="text" placeholder="Badge Text (e.g. 20% OFF)" id="specialBadge">
+            <textarea placeholder="Description" id="specialDesc" rows="3"></textarea>
+            <button onclick="saveSpecial()">💾 Save Special</button>
+            <p id="specialMsg" class="success-msg"></p>
+          </div>
+          <div class="special-preview" id="specialPreview"></div>
+        </div>
+
+        <!-- FEEDBACK -->
+        <div id="feedback" class="admin-tab" style="display:none">
+          <h2>💬 Customer Feedback</h2>
+          <div id="adminFeedbackList"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback - Sri Sampoorna</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">Sri Sampoorna</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Order Online</a></li>
+      <li><a href="feedback.html" style="color:#e07b2a">Feedback</a></li>
+      <li><a href="admin.html">Admin</a></li>
+    </ul>
+    <a href="https://wa.me/919876543210" class="btn-whatsapp">Order via WhatsApp</a>
+  </nav>
+
+  <section class="feedback-page">
+    <div class="feedback-header">
+      <h2>💬 Leave Your Feedback</h2>
+      <p>We value your opinion! Help us serve you better.</p>
+    </div>
+
+    <div class="feedback-form-box">
+      <div class="star-rating">
+        <p>Rate your experience:</p>
+        <div class="stars-input">
+          <span onclick="setRating(5)">⭐</span>
+          <span onclick="setRating(4)">⭐</span>
+          <span onclick="setRating(3)">⭐</span>
+          <span onclick="setRating(2)">⭐</span>
+          <span onclick="setRating(1)">⭐</span>
+        </div>
+        <p id="ratingText">Click to rate</p>
+      </div>
+      <input type="text" placeholder="Your Name" id="fbName">
+      <input type="tel" placeholder="Mobile Number (optional)" id="fbPhone">
+      <select id="fbCategory">
+        <option>Food Quality</option>
+        <option>Service Speed</option>
+        <option>Cleanliness</option>
+        <option>Value for Money</option>
+        <option>Overall Experience</option>
+      </select>
+      <textarea placeholder="Write your feedback here..." id="fbMessage" rows="5"></textarea>
+      <button onclick="submitFeedback()">Submit Feedback</button>
+      <p id="fbSuccess" class="success-msg"></p>
+    </div>
+
+    <div class="feedback-list">
+      <h3>Recent Feedback</h3>
+      <div id="feedbackList"></div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
